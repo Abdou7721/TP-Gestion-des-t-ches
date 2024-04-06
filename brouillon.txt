@@ -1,0 +1,15 @@
+document.getElementById("task").addEventListener("input", function() {
+    const image = document.getElementById("im");
+    if (this.value.trim() !== "") {
+        image.style.display = 'none'; // Fait disparaître l'image lorsque le champ n'est pas vide
+    } else {
+        
+    }
+});
+
+function effacerChamp() {
+    document.getElementById("task").value = ""; // Efface le contenu du champ de saisie
+}
+
+// Lier la fonction effacerChamp à l'événement de clic sur l'élément de saisie
+document.getElementById("task").addEventListener("click", effacerChamp);

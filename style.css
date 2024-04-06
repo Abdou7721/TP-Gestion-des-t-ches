@@ -1,0 +1,103 @@
+:root{
+    --couleur1: white;
+    --couleur2: 0DE2FF;
+}
+.contener_principal{
+    margin-left: 30%;
+    
+}
+h1{
+    color: blue;
+    text-align: left;
+    margin-left: 40px;
+}
+input{
+    width: 350px;
+    height: 40px;
+    margin-left: 40px;
+}
+
+
+
+.champ{
+    display: flex;
+    margin-top: 50px;
+}
+.ajouter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blue;
+    color: white;
+    margin-left: 25px;
+    width: 35px;
+    height: 35px;
+    font-size: 40px;
+    border-radius: 50%;
+    text-align: center;
+    
+}
+.contener_list{
+    
+}
+ul{
+    width: 450px;
+}
+ul li{
+    
+    background-color: cyan;
+    margin-bottom: 10px;
+    height: 40px;
+    list-style: none;
+}
+li button{
+    
+    margin-left: 90%;
+    margin-top: 0px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    border: none;
+    font-size: 20px;
+}
+.elements_list{
+    display: flex;
+    width: 450px;
+    height: 30px;
+    background-color: black;
+    margin-left: 40px;
+    margin-top: 20px;
+   
+}
+.description{
+    color: white;
+    font-size: large;
+    
+}
+@keyframes rotation{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+        visibility: hidden;
+    }
+}
+img{
+    display: none;
+    width: 30px;
+    height: 30px;
+    margin-left: 30px;
+    animation-name: rotation;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+}
+img1{
+    display: none;
+    width: 30px;
+    height: 30px;
+    margin-left: 30px;
+    animation-name: rotation;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+}
