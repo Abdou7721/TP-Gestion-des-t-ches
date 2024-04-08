@@ -3,7 +3,7 @@
     --couleur2: 0DE2FF;
 }
 .contener_principal{
-    margin-left: 30%;
+    margin-left: 0%;
     
 }
 h1{
@@ -45,6 +45,8 @@ ul{
 }
 ul li{
     display: flex;
+    height: fit-content;
+    width: 600px;
     background-color: cyan;
     margin-bottom: 10px;
     height: 40px;
@@ -63,7 +65,7 @@ li button{
 }
 .elements_list{
     display: flex;
-    width: 450px;
+    width: 600px;
     height: 30px;
     background-color: black;
     margin-left: 40px;
