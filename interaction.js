@@ -50,6 +50,8 @@ function entrer(){
         calendar.style.position = "absolute";
         calendar.style.left="380px"; 
         
+
+        
         sup.style.position = "absolute";
         sup.style.left="420px"; 
         
@@ -143,7 +145,7 @@ function entrer(){
         
 
         Element.appendChild(calendarContainer);
-    
+        
         //Element.appendChild(selectedDate);
        // Element.appendChild(sup);
         
