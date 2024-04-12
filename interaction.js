@@ -22,6 +22,7 @@ function afficherCalendrier() {
 function entrer(){
     const nouvelElement=document.getElementById("task").value;
     
+
     if(nouvelElement.trim() !== ""){
        
         const list=document.getElementById("liste");
@@ -112,6 +113,7 @@ function entrer(){
             // Afficher l'image avec une animation
             image1.style.display = 'block';
             
+        
             
         };
 
@@ -145,11 +147,19 @@ function entrer(){
         
 
         Element.appendChild(calendarContainer);
-        
-        //Element.appendChild(selectedDate);
-       // Element.appendChild(sup);
-        
         list.appendChild(Element);
+
+    // Récupérer tous les éléments de la liste
+    const elements = list.querySelectorAll("li");
+
+    // Convertir les éléments en une chaîne de caractères HTML
+    const elementsHTML = Array.from(elements).map(element => element.outerHTML);
+
+    // Stocker la chaîne de caractères HTML dans le localStorage
+    localStorage.setItem("elements", JSON.stringify(elementsHTML));
+
+
+
         image.style.display='block';
         document.getElementById("task").value = "";
        
@@ -160,4 +170,65 @@ document.getElementById("agenda").addEventListener("click", function() {
     afficherCalendrier();
 });
 
+
+window.onload = function() {
+    // Obtenir une référence à l'élément liste
+    const list = document.getElementById("liste");
+
+    // Récupérer la chaîne de caractères HTML du localStorage
+    const elementsHTML = localStorage.getItem("elements");
+    
+
+    // Vérifier si quelque chose a été récupéré
+    if (elementsHTML) {
+        // Convertir la chaîne de caractères HTML en un tableau
+        const elementsArray = JSON.parse(elementsHTML);
+
+
+    
+
+        // Ajouter chaque élément du tableau à la liste
+        elementsArray.forEach((elementHTML, index) => {
+            // Créer un élément temporaire pour convertir le HTML en un nœud du DOM
+            const tempDiv = document.createElement("div");
+            tempDiv.innerHTML = elementHTML;
+
+            const check = tempDiv.querySelector("input[type='checkbox']");
+            const TextSpan = tempDiv.querySelector("span");
+            const Elemen = tempDiv.querySelector("li");
+            const supprimer=  tempDiv.querySelector("button");
+            
+            supprimer.onclick= function(){
+                   list.removeChild(Elemen);
+                   elementsArray.splice(index, 1);
+                   localStorage.setItem("elements", JSON.stringify(elementsArray));
+            }
+
+
+            if (check) {
+                check.addEventListener("change", function() {
+                    if (this.checked) {
+                        Elemen.style.backgroundColor = "lightgrey";
+                        Elemen.style.borderRadius = "5px";
+                        if (TextSpan) {
+                            TextSpan.style.textDecoration = "line-through";
+                        }
+                    } else {
+                        Elemen.style.backgroundColor = "";
+                        Elemen.style.borderRadius = "";
+                        if (TextSpan) {
+                            TextSpan.style.textDecoration = "";
+                        }
+                    }
+                });
+            }
+    
+
+            
+
+            // Ajouter le premier enfant de l'élément temporaire (qui est l'élément li) à la liste
+            list.appendChild(tempDiv.firstChild);
+        });
+    }
+}
 

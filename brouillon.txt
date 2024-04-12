@@ -416,15 +416,127 @@ document.getElementById("agenda").addEventListener("click", function() {
     afficherCalendrier();
 });
 
+-------------------------------------------------------=====================
+
+const nouvelElement=document.getElementById("task").value;
+const list=document.getElementById("liste");
+const Element=document.createElement("li");
+const sup= document.createElement("button");
+        const selectedDate = document.getElementById("date_text");
+        const calendarContainer = document.createElement("div");
+        const calendar= document.createElement("input");
+        const checkbox = document.createElement("input");
+        const textSpan = document.createElement("span"); 
+ calendarContainer.style.display = "flex";
+        calendar.type = "date";
+        checkbox.type = "checkbox";
+        checkbox.style.marginRight = "10px";
+        checkbox.style.marginLeft = "2px";
+        checkbox.style.width="15px";
+        checkbox.style.height="15px";
+        checkbox.style.display = "block";
+        
+        calendar.style.width="100px";
+        calendar.style.height="20px";
+        calendar.style.position = "absolute";
+        calendar.style.left="380px"; 
+       
+        
+        sup.style.position = "absolute";
+        sup.style.left="420px"; 
+textSpan.style.width="10px";
+        textSpan.textContent = nouvelElement;
+        textSpan.style.whiteSpace = "nowrap"; // Permet au texte de faire un retour à la ligne
+        textSpan.style.display = "block"; 
+ checkbox.addEventListener("change", function() {
+            if (this.checked) {
+                Element.style.backgroundColor = "lightgrey"; // Changer la couleur de fond en gris
+                Element.style.borderRadius = "5px"; // Ajouter un arrondi aux coins
+                textSpan.style.textDecoration = "line-through"; 
+            } else {
+                Element.style.backgroundColor = ""; // Réinitialiser la couleur de fond
+                Element.style.borderRadius = ""; // Réinitialiser le style des coins
+                textSpan.style.textDecoration = ""; 
+            }
+        });
+        calendar.addEventListener('change', function() {
+            if(this.value.trim() !== ""){
+              calendar_img.style.display='block';
+              //calendar_img.style.visibility='hidden';
+              image.style.display='none';
+              image1.style.display='none';
+            }else{
+      
+            }
+      });
 
 
+        calendarContainer.appendChild(checkbox);
+        calendarContainer.appendChild(textSpan);
+        calendarContainer.appendChild(calendar);
+        calendarContainer.appendChild(sup);
+
+        Element.appendChild(calendarContainer);
+        list.appendChild(Element);
+        
+// Récupérer tous les éléments de la liste
+    const elements = list.querySelectorAll("li");
+
+    // Convertir les éléments en une chaîne de caractères HTML
+    const elementsHTML = Array.from(elements).map(element => element.outerHTML);
+
+    // Stocker la chaîne de caractères HTML dans le localStorage
+    localStorage.setItem("elements", JSON.stringify(elementsHTML));
+
+        image.style.display='block';
+        document.getElementById("task").value = "";
+       
+    }
+   
+}
+
+window.onload = function() {
+    // Obtenir une référence à l'élément liste
+    const list = document.getElementById("liste");
+
+    // Récupérer la chaîne de caractères HTML du localStorage
+    const elementsHTML = localStorage.getItem("elements");
+
+    // Vérifier si quelque chose a été récupéré
+    if (elementsHTML) {
+        // Convertir la chaîne de caractères HTML en un tableau
+        const elementsArray = JSON.parse(elementsHTML);
+
+        // Ajouter chaque élément du tableau à la liste
+        elementsArray.forEach(elementHTML => {
+            // Créer un élément temporaire pour convertir le HTML en un nœud du DOM
+            const tempDiv = document.createElement("div");
+            tempDiv.innerHTML = elementHTML;
+
+            // Ajouter le premier enfant de l'élément temporaire (qui est l'élément li) à la liste
+            list.appendChild(tempDiv.firstChild);
+        });
+    }
+}
 
 
+localStorage.clear();
 
 
+window.onload = function() {
+    // ... (le reste de votre code)
 
+    // Ajouter chaque élément du tableau à la liste
+    elementsArray.forEach(elementHTML => {
+        // ... (le reste de votre code)
 
+        // Ajouter la classe à l'élément
+        tempDiv.firstChild.classList.add("myClass");
 
+        // Ajouter l'élément à la liste
+        list.appendChild(tempDiv.firstChild);
+    });
+}
 
 
 
